@@ -11,15 +11,11 @@ Tehnologii recomandate:
     Serverul aplicației, va servi clientului fișierele necesare, se va conecta la baza de date.
 - react
     Se ocupă de UI. Noi scriem componente care depind de `state`. React are grijă să afișeze în DOM componentele noastre în dependență de `state`. Matematic vorbind:
-`UI = React(state)`
-
-- Folosim hooks pentru cod frumos.
-
+`UI = React(state)`.
+- hooks pentru cod frumos.
 - chakra-ui
     Ne permite să scriem CSS fără să scriem CSS 🤩. Și mai are și multe componente gata făcute.
-
 - swr
     Are grijă de operațiile async din React.
-
 - mongodb
     O bază de date populară.

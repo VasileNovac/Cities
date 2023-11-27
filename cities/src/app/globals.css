@@ -24,4 +24,55 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  font-size: 11px;
+}
+.form {
+  max-width: 300px;
+  min-width: 100px;
+  width: 18vw;
+}
+input, textarea {
+  max-width: 300px ;
+  min-height: 2em;
+  margin-top: 3px;
+  background-color: #0f2e38;
+  border: 1px solid #20677c;
+  color: #ffffff ;
+  border-radius: 5px;
+}
+button {
+  display: block;
+  width: 100px;
+  margin: 10px;
+  height: 2em;
+  background-color: #0f2e38;
+  border: 1px solid #20677c;
+  color: #ffffff ;
+}
+input[type="submit"] {
+  display: block;
+  width: 10vw;
+  margin: 0 auto;
+  height: 2em;
+  font-size: 1.1rem;
+  background-color: #3b3b4f;
+  border-color: white;
+  max-width: 200px;
+  min-width: 100px;
+}
+input[type="submit"]:hover {
+  background-color: #4CAF50;
+}
+button:hover {
+  background-color: #4CAF50;
+}
+table, th, td {
+  border:1px solid white;
+  border-collapse: collapse;
+  padding: 5px;
+  text-align: center;
+}
+
+td {
+  width: 150px;
 }

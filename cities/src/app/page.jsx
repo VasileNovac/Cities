@@ -1,6 +1,8 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import Navbar from "/src/components/navbar"
+import Image from 'next/image';
+import Link from 'next/link';
+import Navbar from "./components/navbar";
+import FavoritList from "./components/favoritList";
+import './globals.css';
 
 export default function Home() {
   return (
@@ -32,7 +34,8 @@ export default function Home() {
           priority
         />
       </div>
-
+      
+      <FavoritList />
       <Navbar />
     </main>
   )

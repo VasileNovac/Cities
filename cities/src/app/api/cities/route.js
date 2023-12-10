@@ -1,5 +1,5 @@
 import connectDB from "@/libs/mongodb";
-import City from "@/models/citySchema"
+import City from "@/models/citySchema" ;
 import { NextResponse } from "next/server";
 
 export async function POST(request) {

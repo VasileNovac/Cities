@@ -77,3 +77,9 @@ table, th, td {
 td {
   width: 150px;
 }
+
+.poza {
+  border: 1px solid white ;
+  padding: 2px ;
+  margin: 5px
+}

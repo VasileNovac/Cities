@@ -1,7 +1,8 @@
-import React, { Component, useState, useEffect } from 'react'
-import '/src/app/globals.css'
-import Navbar from "/src/app/components/navbar"
-import Link from 'next/link'
+import React, { Component, useState, useEffect } from 'react' ;
+import '/src/app/globals.css' ;
+import Navbar from "/src/app/components/navbar" ;
+import CityFoto from "/src/app/components/cityFoto";
+import Link from 'next/link' ;
 
 function Header({ title }) {
   return <h1>{title ? title : 'Default title'}</h1>;
@@ -46,7 +47,7 @@ class MySearch extends React.Component {
         items: data.results.map((x, index) => 
           <table>
             <tr>
-              <td><Link href={{pathname: '/city-page', query: data.results[index]}}> {x.name} </Link></td>
+              <td><Link href={{pathname: '/cityPageS', query: data.results[index]}}> {x.name} </Link></td>
               <td>{x.country}</td>
               <td>{x.country_code}</td>
               <td>{x.admin1}</td>

@@ -1,5 +1,5 @@
-import '/src/app/globals.css'
-import Link from 'next/link'
+import '/src/app/globals.css' ;
+import Link from 'next/link' ;
 
 const getFavorit = async () => {
   try {
@@ -17,16 +17,19 @@ const getFavorit = async () => {
 }
 
 export default async function FavoritList() {
-  const {cities} = await getFavorit() ;
+  const {cities} = await getFavorit();
 
   return (
     <div>
       {cities.map((x, index) => (
-        <div>
-          
+        <div key={x.idx} className="poza">
           <img src={x.foto}></img>
-          <p>{x.nume}</p>
-
+          <p>{x.nume}
+{/*
+            <span> - </span>
+            <span><Link href={{pathname: '/cityPageF', query: {id: x.idx, name: x.nume, latitude: x.lat, longitude: x.long} }}>Read more...</Link></span>
+*/}
+          </p>
         </div>
       ))}
     </div>

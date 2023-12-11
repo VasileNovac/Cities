@@ -20,8 +20,7 @@ export default function CityGeo(idCity) {
                 admin2: data.admin2,
                 timezone: data.timezone,
             }))
-            .catch(error => console.error('Error fetching data CityGeo: ', error)
-        );
+            .catch(error => console.error('Error fetching data CityGeo: ', error));
     }, []);
 
     return ( data );

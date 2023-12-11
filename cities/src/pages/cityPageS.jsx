@@ -92,14 +92,14 @@ export function CityMeteoS() {
 }
 
 export function MyCityS() {
-  const { query: {id, name, latitude, longitude} } = useRouter() ;
-  const props = {id, name, latitude, longitude} ;
+  const { query: {id, name, latitude, longitude, foto} } = useRouter() ;
+  const props = {id, name, latitude, longitude, foto} ;
 
   const [idx, setIdx] = useState(props.id);
   const [nume, setNume] = useState(props.name);
   const [lat, setLat] = useState(props.latitude);
   const [long, setLong] = useState(props.longitude);
-  const [foto, setFoto] = useState("");
+  const [sfoto, setFoto] = useState(props.foto)
 
   // adaugare in baza de date
   const handleSubmitAdd = async (e) => {
@@ -125,22 +125,6 @@ export function MyCityS() {
       console.log("Error loading Cities", error);
     }
   }
-// stergere din baza de date
-  const handleSubmitDel = async (e) => {
-    e.preventDefault()
-    const confirmed = confirm("Are you sure ?") ;
-    if (confirmed) {
-      const res = await fetch(`http://localhost:3000/api/cities?idx=${idx}`, {
-        method: "DELETE",
-      });
-      if (res.ok) {
-        alert ("City deleted from Favorit");
-      }
-      else {
-        alert ("City not deleted from Favorit");
-      }
-    }
-  }
 
   return (
     <div>
@@ -150,19 +134,8 @@ export function MyCityS() {
           <input type='hidden' value={props.name} />
           <input type='hidden' value={props.latitude} />
           <input type='hidden' value={props.longitude} />
-          <input type='hidden' value={foto} />
+          <input type='hidden' value={props.foto} />
           <button type='submit'>Add Favorit</button>
-        </form>
-      </div>
-
-      <div>
-        <form onSubmit={handleSubmitDel}>
-          <input type='hidden' value={props.id} />
-          <input type='hidden' value={props.name} />
-          <input type='hidden' value={props.latitude} />
-          <input type='hidden' value={props.longitude} />
-          <input type='hidden' value={foto} />
-          <button type='submit'>Del Favorit</button>
         </form>
       </div>
     </div>

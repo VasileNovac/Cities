@@ -24,14 +24,6 @@ class MySearch extends React.Component {
     });
   }
 
-/*
-  handleSubmit(e) {
-    e.preventDefault()
-    this.setState({
-      submit: this.state.input
-    });
-  }
-*/
   async handleFetch(e)  {
     e.preventDefault()
     this.setState({

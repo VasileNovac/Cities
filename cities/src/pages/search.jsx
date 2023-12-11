@@ -14,6 +14,7 @@ class MySearch extends React.Component {
     this.state = {
       input: '',
       submit: '',
+      foto: '',
       items: [],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -40,14 +41,23 @@ class MySearch extends React.Component {
     this.setState({
       submit: this.state.input
     })
+
+    await fetch('https://api.teleport.org/api/urban_areas/slug:'+this.state.input.trim().toLowerCase()+'/images/')
+      .then( res => res.json() )
+      .then( data => this.setState({
+        foto: data.photos[0].image.web
+      }))
+      .catch(error => console.error('Error fetching data CityFoto: ', error));
+
     await fetch('https://geocoding-api.open-meteo.com/v1/search?name='+this.state.input.trim()+'&count=10&language=en&format=json')
       .then(res => res.json())
       .then(data => 
         this.setState({
         items: data.results.map((x, index) => 
-          <table>
+          <table key={index}>
             <tr>
-              <td><Link href={{pathname: '/cityPageS', query: data.results[index]}}> {x.name} </Link></td>
+{/*              <td><Link href={{pathname: '/cityPageS', query: data.results[index]}}> {x.name} </Link></td>*/}
+              <td><Link href={{pathname: '/cityPageS', query: {...data.results[index], foto:this.state.foto}}}> {x.name} </Link></td>
               <td>{x.country}</td>
               <td>{x.country_code}</td>
               <td>{x.admin1}</td>
@@ -57,7 +67,7 @@ class MySearch extends React.Component {
         )
         })
       )
-      .catch(error => console.error('Error fetching data:', error));      
+      .catch(error => console.error('Error fetching data:', error));
   }
 
   render() {

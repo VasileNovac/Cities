@@ -12,8 +12,7 @@ export default function CityFoto(nameCity) {
       .then( data => setData({
         foto: data.photos[0].image.web
       }))
-      .catch(error => console.error('Error fetching data CityFoto: ', error)
-    );
+      .catch(error => console.error('Error fetching data CityFoto: ', error));
   }, []);
   
   return ( data.foto )

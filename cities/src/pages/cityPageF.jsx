@@ -91,14 +91,14 @@ export function CityMeteoF() {
 }
 
 export function MyCityF() {
-  const { query: {id, name, latitude, longitude} } = useRouter() ;
-  const props = {id, name, latitude, longitude} ;
+  const { query: {id, name, latitude, longitude, foto} } = useRouter() ;
+  const props = {id, name, latitude, longitude, foto} ;
 
   const [idx, setIdx] = useState(props.id);
   const [nume, setNume] = useState(props.name);
   const [lat, setLat] = useState(props.latitude);
   const [long, setLong] = useState(props.longitude);
-  const [foto, setFoto] = useState("");
+  const [sfoto, setFoto] = useState(props.foto);
 
 // modificare in baza de date
   const handleSubmitUpd = async (e) => {
@@ -119,7 +119,7 @@ export function MyCityF() {
       } else {
         throw new Error("Failed to add City");
       }
-      return res.json();
+//      return res.json();
     } 
     catch (error) {
       console.log("Error loading Cities", error);
@@ -151,7 +151,7 @@ export function MyCityF() {
           <input type='hidden' value={props.name} />
           <input type='hidden' value={props.latitude} />
           <input type='hidden' value={props.longitude} />
-          <input type='hidden' value={foto} />
+          <input type='hidden' value={props.foto} />
           <button type='submit'>Update Favorit</button>
         </form>
       </div>
@@ -162,7 +162,7 @@ export function MyCityF() {
           <input type='hidden' value={props.name} />
           <input type='hidden' value={props.latitude} />
           <input type='hidden' value={props.longitude} />
-          <input type='hidden' value={foto} />
+          <input type='hidden' value={props.foto} />
           <button type='submit'>Del Favorit</button>
         </form>
       </div>

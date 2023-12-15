@@ -3,10 +3,10 @@ import City from "@/models/citySchema";
 import { NextResponse } from "next/server";
 
 export async function PUT(request, {params}) {
-    const { id } = params;
-    const { newIdx: idx, newNume: nume, newLat: lat, newLong: long, newFoto: foto} = await request.json();
+    const id = params;
+    const { newNume: nume, newLat: lat, newLong: long, newFoto: foto, newNota: nota, newComm: comm } = await request.json();
     await connectDB();
-    await City.findByIdAndUpdate(id, {idx, nume, lat, long, foto});
+    await City.findByIdAndUpdate(id, { nume, lat, long, foto, nota, comm });
     return NextResponse.json({message: "Favorit City Updated"}, { status: 200});
 }
 

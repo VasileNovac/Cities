@@ -4,6 +4,7 @@ import Navbar from "./components/navbar";
 import FavoritList from "./components/favoritList";
 import './globals.css';
 
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -34,8 +35,8 @@ export default function Home() {
           priority
         />
       </div>
-      
       <FavoritList />
+
       <Navbar />
     </main>
   )

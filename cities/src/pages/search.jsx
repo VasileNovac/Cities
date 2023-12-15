@@ -14,7 +14,7 @@ class MySearch extends React.Component {
     this.state = {
       input: '',
       submit: '',
-      foto: '',
+      sfoto: '',
       items: [],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -45,7 +45,7 @@ class MySearch extends React.Component {
     await fetch('https://api.teleport.org/api/urban_areas/slug:'+this.state.input.trim().toLowerCase()+'/images/')
       .then( res => res.json() )
       .then( data => this.setState({
-        foto: data.photos[0].image.web
+        sfoto: data.photos[0].image.web
       }))
       .catch(error => console.error('Error fetching data CityFoto: ', error));
 
@@ -55,19 +55,20 @@ class MySearch extends React.Component {
         this.setState({
         items: data.results.map((x, index) => 
           <table key={index}>
-            <tr>
-{/*              <td><Link href={{pathname: '/cityPageS', query: data.results[index]}}> {x.name} </Link></td>*/}
-              <td><Link href={{pathname: '/cityPageS', query: {...data.results[index], foto:this.state.foto}}}> {x.name} </Link></td>
-              <td>{x.country}</td>
-              <td>{x.country_code}</td>
-              <td>{x.admin1}</td>
-              <td>{x.admin2}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td><Link href={{pathname: '/cityPageS', query: {...data.results[index], sfoto: this.state.sfoto}}}> {x.name} </Link></td>
+                <td>{x.country}</td>
+                <td>{x.country_code}</td>
+                <td>{x.admin1}</td>
+                <td>{x.admin2}</td>
+              </tr>
+            </tbody>
           </table>
         )
         })
       )
-      .catch(error => console.error('Error fetching data:', error));
+      .catch(error => console.error('Error fetching data Cities:', error));
   }
 
   render() {
@@ -91,11 +92,12 @@ class MySearch extends React.Component {
 export default function Search() {
   return (
   <main className="flex min-h-screen flex-col items-center justify-between p-24">
-  
     <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
       <Header title="Search and Select city" />
     </div>
+
     <MySearch />
+
     <Navbar />
   </main>
   )

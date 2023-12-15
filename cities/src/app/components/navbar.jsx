@@ -48,7 +48,7 @@ export default function Navbar() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the tourist sights of the city.
+            Explore the city.
           </p>
         </Link>
   

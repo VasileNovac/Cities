@@ -23,7 +23,7 @@ export default async function FavoritList() {
     <div>
       {cities.map((x, index) => (
         <div key={x.idx} className="poza">
-          <img src={x.foto}></img>
+          <img src={x.foto} alt="Nu exista imagine"></img>
           <p>{x.nume}
 {/*
             <span> - </span>

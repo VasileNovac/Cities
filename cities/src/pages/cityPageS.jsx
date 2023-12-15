@@ -15,12 +15,11 @@ function Header({ title }) {
 export function CityFotoS() {
   const { query: {name} } = useRouter() ;
   const props = {name} ;
-
   const image = CityFoto(props.name);
 
   return (
     <div className="poza">
-      <img src={image}></img>
+      <img src={image} alt="Nu exista imagine"></img>
     </div>
   )
 }
@@ -28,33 +27,34 @@ export function CityFotoS() {
 export function CityGeoS() {
   const { query: {id} } = useRouter() ;
   const props = {id} ;
-
   const geo = CityGeo(props.id);
 
   return (
     <div>
       <table>
         <caption>Informatii GEOGRAFICE</caption>
-        <tr>
-          <th>Denumire</th>
-          <th>Tara</th>
-          <th>Cod tara</th>
-          <th>Latitudine</th>
-          <th>Longitudine</th>
-          <th>Zona</th>
-          <th>Zona</th>
-          <th>Ora locala</th>
-        </tr>
-        <tr>
-          <td>{geo.name}</td>
-          <td>{geo.country}</td>
-          <td>{geo.country_code}</td>
-          <td>{geo.latitude}</td>
-          <td>{geo.longitude}</td>
-          <td>{geo.admin1}</td>
-          <td>{geo.admin2}</td>
-          <td>{geo.timezone}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <th>Denumire</th>
+            <th>Tara</th>
+            <th>Cod tara</th>
+            <th>Latitudine</th>
+            <th>Longitudine</th>
+            <th>Zona</th>
+            <th>Zona</th>
+            <th>Ora locala</th>
+          </tr>
+          <tr>
+            <td>{geo.name}</td>
+            <td>{geo.country}</td>
+            <td>{geo.country_code}</td>
+            <td>{geo.latitude}</td>
+            <td>{geo.longitude}</td>
+            <td>{geo.admin1}</td>
+            <td>{geo.admin2}</td>
+            <td>{geo.timezone}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   )
@@ -63,55 +63,61 @@ export function CityGeoS() {
 export function CityMeteoS() {
   const { query: {name, latitude, longitude,} } = useRouter() ;
   const props = {name, latitude, longitude,} ;
-
   const meteo = CityMeteo(props.latitude, props.longitude);
 
   return (
     <div>
       <table>
         <caption>Informatii METEO</caption>
-        <tr>
-          <th>Data si Ora </th>
-          <th>Temperatura [{meteo.unitTemperatura}]</th>
-          <th>Umiditate [{meteo.unitUmiditate}]</th>
-          <th>Precipitatii [{meteo.unitPrecipitatie}]</th>
-          <th>Presiune [{meteo.unitPresiune}]</th>
-          <th>Viteza vant [{meteo.unitVitezaVant}]</th>
-        </tr>
-        <tr>
-          <td>{meteo.dataOra} {meteo.timeZone}</td>
-          <td>{meteo.temperatura}</td>
-          <td>{meteo.umiditate}</td>
-          <td>{meteo.precipitatie}</td>
-          <td>{meteo.presiune}</td>
-          <td>{meteo.vitezaVant}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <th>Data si Ora </th>
+            <th>Temperatura [{meteo.unitTemperatura}]</th>
+            <th>Umiditate [{meteo.unitUmiditate}]</th>
+            <th>Precipitatii [{meteo.unitPrecipitatie}]</th>
+            <th>Presiune [{meteo.unitPresiune}]</th>
+            <th>Viteza vant [{meteo.unitVitezaVant}]</th>
+          </tr>
+          <tr>
+            <td>{meteo.dataOra} {meteo.timeZone}</td>
+            <td>{meteo.temperatura}</td>
+            <td>{meteo.umiditate}</td>
+            <td>{meteo.precipitatie}</td>
+            <td>{meteo.presiune}</td>
+            <td>{meteo.vitezaVant}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   )
 }
 
 export function MyCityS() {
-  const { query: {id, name, latitude, longitude, foto} } = useRouter() ;
-  const props = {id, name, latitude, longitude, foto} ;
-
+  const { query: {id, name, latitude, longitude, sfoto} } = useRouter() ;
+  const props = {id, name, latitude, longitude, sfoto} ;
   const [idx, setIdx] = useState(props.id);
   const [nume, setNume] = useState(props.name);
   const [lat, setLat] = useState(props.latitude);
   const [long, setLong] = useState(props.longitude);
-  const [sfoto, setFoto] = useState(props.foto)
+  const [foto, setFoto] = useState(props.sfoto);
+  const [nota, setNota] = useState("");
+  const [comm, setComm] = useState("");
+
+  const handleChange = (e) => {
+    e.preventDefault() ;
+  }
 
   // adaugare in baza de date
   const handleSubmitAdd = async (e) => {
     e.preventDefault()
     try {
-      const res = await fetch("http://localhost:3000/api/cities", {
+      const res = await fetch(`http://localhost:3000/api/cities`, {
         cache: "no-store",
         method: "POST",
         headers: {
           "Content-type": "application/json"
         },
-        body: JSON.stringify({idx, nume, lat, long, foto}),
+        body: JSON.stringify({idx, nume, lat, long, foto, nota, comm}),
       });
       if (res.ok) {
         alert("City added to Favorit");
@@ -130,11 +136,13 @@ export function MyCityS() {
     <div>
       <div>
         <form onSubmit={handleSubmitAdd}>
-          <input type='hidden' value={props.id} />
-          <input type='hidden' value={props.name} />
-          <input type='hidden' value={props.latitude} />
-          <input type='hidden' value={props.longitude} />
-          <input type='hidden' value={props.foto} />
+          <input type='hidden' onChange={handleChange} value={props.id} />
+          <input type='hidden' onChange={handleChange} value={props.name} />
+          <input type='hidden' onChange={handleChange} value={props.latitude} />
+          <input type='hidden' onChange={handleChange} value={props.longitude} />
+          <input type='hidden' onChange={handleChange} value={props.sfoto} />
+          <input type='hidden' onChange={handleChange} value=" " />
+          <input type='hidden' onChange={handleChange} value=" " />
           <button type='submit'>Add Favorit</button>
         </form>
       </div>
@@ -153,10 +161,8 @@ export default function CityPageS() {
     <CityFotoS />
     <CityGeoS />
     <CityMeteoS />
-
     <MyCityS />
     <Navbar />
-    
   </main>
   );
 }

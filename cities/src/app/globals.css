@@ -83,3 +83,12 @@ td {
   padding: 2px ;
   margin: 5px
 }
+
+.inline {
+  width: unset;
+  margin: 0 2px 5px 0;
+  vertical-align: middle;
+}
+.nota {
+  margin-top: 5px;
+}

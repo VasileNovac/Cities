@@ -7,6 +7,8 @@ const citySchema = new Schema(
         lat: String,
         long: String,
         foto: String,
+        nota: String,
+        comm: String,
     },
     {
         timestamps: true,

@@ -16,6 +16,7 @@ export default function CityPageW() {
         <div>
             <h1>Not selected CITY</h1>
         </div>
+        <div id="carusel"></div>
       <Navbar />
     </main>
   );

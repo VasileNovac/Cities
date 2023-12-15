@@ -92,3 +92,19 @@ td {
 .nota {
   margin-top: 5px;
 }
+
+#carusel{
+	margin: auto;
+  border: 1px solid black;
+	width: 100%;
+  height: 274px;
+	background-image: url(/bucharest.jpg) ;
+  animation: mymove 10s infinite ;
+  }
+
+@keyframes mymove {
+  20% {transform: rotateX(90deg)};
+  60% {background-image: url(/bucharest.jpg)};
+  50% {transform: rotateX(-90deg)};
+	50% {background-image: url(/belgrade.jpg)} ;
+}

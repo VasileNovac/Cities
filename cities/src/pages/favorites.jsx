@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react' ;
 import '/src/app/globals.css' ;
-import Navbar from "/src/app/components/navbar" ;
+import Navbar from "@/components/navbar" ;
 import Link from 'next/link' ;
 
 function Header({ title }) {

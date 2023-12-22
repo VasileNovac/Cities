@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react' ;
 import '/src/app/globals.css' ;
-import Navbar from "/src/app/components/navbar" ;
+import Navbar from "@/components/navbar" ;
 
 function Header({ title }) {
   return <h1>{title ? title : 'Default title'}</h1>;
@@ -14,7 +14,7 @@ export default function CityPageW() {
         <Header title="Display city page" />
       </div>
         <div>
-            <h1>Not selected CITY</h1>
+            <h1>Bucharest and Belgrade</h1>
         </div>
         <div id="carusel"></div>
       <Navbar />

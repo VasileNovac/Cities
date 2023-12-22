@@ -1,11 +1,9 @@
 import React, { Component, useState, useEffect } from 'react' ;
 import '/src/app/globals.css' ;
-import Navbar from "/src/app/components/navbar" ;
-import CityFoto from "/src/app/components/cityFoto" ;
-import CityMeteo from "/src/app/components/cityMeteo" ;
-import CityGeo from   "/src/app/components/cityGeo" ;
-import Link from 'next/link' ;
-//import { getStaticProps, getServerSideProps, getInitialProps } from 'next' ;
+import Navbar from "@/components/navbar" ;
+import CityFoto from "@/components/cityFoto" ;
+import CityMeteo from "@/components/cityMeteo" ;
+import CityGeo from   "@/components/cityGeo" ;
 import {useRouter} from 'next/router' ;
 
 function Header({ title }) {
@@ -32,6 +30,7 @@ export function CityGeoF() {
   return (
     <div>
       <table>
+        <caption>Informatii GEOGRAFICE</caption>
         <tbody>
           <tr>
             <th>Denumire</th>

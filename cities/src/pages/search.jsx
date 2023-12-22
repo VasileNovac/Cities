@@ -1,7 +1,6 @@
 import React, { Component, useState, useEffect } from 'react' ;
 import '/src/app/globals.css' ;
-import Navbar from "/src/app/components/navbar" ;
-import CityFoto from "/src/app/components/cityFoto";
+import Navbar from "@/components/navbar" ;
 import Link from 'next/link' ;
 
 function Header({ title }) {
@@ -42,14 +41,14 @@ class MySearch extends React.Component {
       submit: this.state.input
     })
 
-    await fetch('https://api.teleport.org/api/urban_areas/slug:'+this.state.input.trim().toLowerCase()+'/images/')
+    await fetch(`https://api.teleport.org/api/urban_areas/slug:${this.state.input.trim().toLowerCase()}/images/`)
       .then( res => res.json() )
       .then( data => this.setState({
         sfoto: data.photos[0].image.web
       }))
-      .catch(error => console.error('Error fetching data CityFoto: ', error));
+      .catch(error => console.error('Error fetching CityFoto: ', error));
 
-    await fetch('https://geocoding-api.open-meteo.com/v1/search?name='+this.state.input.trim()+'&count=10&language=en&format=json')
+    await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${this.state.input.trim()}&count=10&language=en&format=json`)
       .then(res => res.json())
       .then(data => 
         this.setState({
@@ -68,7 +67,7 @@ class MySearch extends React.Component {
         )
         })
       )
-      .catch(error => console.error('Error fetching data Cities:', error));
+      .catch(error => console.error('Error fetching Cities:', error));
   }
 
   render() {
